@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css" />
     <title>Loot Drop</title>
-
 </head>
 <body>
 <header>
@@ -14,40 +13,32 @@
 </header>
 <nav>
     <ul>
-        <li><a href="index.html">Main page</a> </li>
-        <li><a href="boss-list.html" class="active">Bosses</a> </li>
-        <li><a href="weapons-list.html">Weapons</a> </li>
-        <li><a href="drop-list.html">Drops</a> </li>
+        <li><a href="index.html">Main page</a></li>
+        <li><a href="boss-list.html">Bosses</a></li>
+        <li><a href="weapons-list.html">Weapons</a></li>
+        <li><a href="drop-list.html" class="active">Drops</a></li>
     </ul>
 </nav>
 <main>
-    <h2>Details</h2>
+    <h2>New boss</h2>
     <form>
         <div>
             <label for="Name">Name:<sup>*</sup></label>
-            <input type="text" name="Name" value="Nimran" id="Name" disabled>
+            <input type="text" name="Name" id="Name">
         </div>
         <div>
             <label for="Location">Location:<sup>*</sup></label>
-            <input type="text" name="Location" value="The Cold Pits" id="Location" disabled>
+            <input type="text" name="Location" id="Location">
         </div>
         <div>
             <label for="Hp">Hp:<sup>*</sup></label>
-            <input type="number" name="Hp" value=1000 id="Hp" disabled>
+            <input type="number" name="Hp" id="Hp">
         </div>
         <div>
-            <a href="boss-form.html">Edit</a>
+            <input type="submit" value="Add">
+            <a href="boss-list.html">Cancel</a>
         </div>
     </form>
-
-    <h2>Loot</h2>
-    <table class="table-list">
-        <thead>
-        <tr>
-            <th></th>
-        </tr>
-        </thead>
-    </table>
 
 </main>
 <footer>
