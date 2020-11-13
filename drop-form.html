@@ -16,27 +16,39 @@
         <li><a href="index.html">Main page</a></li>
         <li><a href="boss-list.html">Bosses</a></li>
         <li><a href="weapons-list.html">Weapons</a></li>
-        <li><a href="drop-list.html" class="active">Drops</a></li>
+        <li><a href="" class="active">Drops</a></li>
     </ul>
 </nav>
 <main>
-    <h2>New boss</h2>
-    <form>
-        <div>
-            <label for="Name">Name:<sup>*</sup></label>
-            <input type="text" name="Name" id="Name">
-        </div>
-        <div>
-            <label for="Location">Location:<sup>*</sup></label>
-            <input type="text" name="Location" id="Location">
-        </div>
-        <div>
-            <label for="Hp">Hp:<sup>*</sup></label>
-            <input type="number" name="Hp" id="Hp">
-        </div>
-        <div>
-            <input type="submit" value="Add">
-            <a href="boss-list.html">Cancel</a>
+    <h2>New drop</h2>
+    <form class="form">
+        <!--        <div class="form-group">-->
+        <label for="Weapon Name">Weapon name<sup>*</sup></label>
+        <input type="text" name="Name" id="Weapon Name">
+
+        <label for="Boss Name">Boss name<sup>*</sup></label>
+        <input type="text" name="Name" id="Boss Name">
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <label for="DropChance">Drop chance:<sup>*</sup></label>
+        <input type="text" name="Location" id="DropChance">
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <label for="minDifficulty">Min difficulty<sup>*</sup></label>
+        <input type="number" name="minDifficulty" id="minDifficulty">
+
+        <label for="minGroupSize">Min group size<sup>*</sup></label>
+        <input type="number" name="minGroupSize" id="minGroupSize">
+
+        <label for="dateStart">Date start<sup>*</sup></label>
+        <input type="date" name="dateStart" id="dateStart">
+
+        <label for="dateEnd">Date end<sup>*</sup></label>
+        <input type="date" name="dateEnd" id="dateEnd">
+        <!--        </div>-->
+        <div class="form-buttons">
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href="boss-list.html" class="form-button-cancel">Cancel</a>
         </div>
     </form>
 

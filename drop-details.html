@@ -22,32 +22,61 @@
 </nav>
 <main>
     <h2>Details</h2>
-    <form>
-        <div>
-            <label for="Name">Name:<sup>*</sup></label>
-            <input type="text" name="Name" value="Nimran" id="Name" disabled>
-        </div>
-        <div>
-            <label for="Location">Location:<sup>*</sup></label>
-            <input type="text" name="Location" value="The Cold Pits" id="Location" disabled>
-        </div>
-        <div>
-            <label for="Hp">Hp:<sup>*</sup></label>
-            <input type="number" name="Hp" value=1000 id="Hp" disabled>
-        </div>
-        <div>
-            <a href="boss-form.html">Edit</a>
+    <form class="form">
+        <!--        <div class="form-group">-->
+        <label for="Weapon Name">Weapon name<sup>*</sup></label>
+        <input type="text" name="Name" value="Bloodied Dualblade"  id="Weapon Name" disabled>
+
+        <label for="Boss Name">Boss name<sup>*</sup></label>
+        <input type="text" name="Name" value="Nirman" id="Boss Name" disabled>
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <label for="DropChance">Drop chance:<sup>*</sup></label>
+        <input type="text" name="DropChance" value="20%"  id="DropChance" disabled>
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <label for="minDifficulty">Min difficulty<sup>*</sup></label>
+        <input type="number" name="minDifficulty" value="2" id="minDifficulty" disabled>
+
+        <label for="minGroupSize">Min group size<sup>*</sup></label>
+        <input type="number" name="minGroupSize" value="10" id="minGroupSize" disabled>
+
+        <label for="dateStart">Date start<sup>*</sup></label>
+        <input type="text" name="dateStart" value="10-10-2013" id="dateStart" disabled>
+
+        <label for="dateEnd">Date end<sup>*</sup></label>
+        <input type="text" name="dateEnd" value="10.10.2016" id="dateEnd" disabled>
+        <!--        </div>-->
+        <div class="form-buttons">
+            <input type="submit" value="Add" class="form-button-submit">
+            <a href="boss-list.html" class="form-button-cancel">Cancel</a>
         </div>
     </form>
 
-    <h2>Loot</h2>
-    <table class="table-list">
-        <thead>
-        <tr>
-            <th></th>
-        </tr>
-        </thead>
-    </table>
+<!--    <h2>Drops</h2>-->
+<!--    <table class="table-list">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Weapon</th>-->
+<!--            <th>Boss</th>-->
+<!--            <th>min Difficulty</th>-->
+<!--            <th>min Group Size</th>-->
+<!--            <th>Drop Chance</th>-->
+<!--            <th>Drop Date Start</th>-->
+<!--            <th>Drop Date End</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tr>-->
+<!--            <td>Bloodied Dualblade</td>-->
+<!--            <td>Nirman</td>-->
+<!--            <td>2</td>-->
+<!--            <td>10</td>-->
+<!--            <td>20%</td>-->
+<!--            <td>10-10-2013</td>-->
+<!--            <td>10-10-2016</td>-->
+<!--        </tr>-->
+
+<!--    </table>-->
 
 </main>
 <footer>

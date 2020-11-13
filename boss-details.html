@@ -22,21 +22,21 @@
 </nav>
 <main>
     <h2>Details</h2>
-    <form>
-        <div>
+    <form class="form">
+<!--        <div>-->
             <label for="Name">Name:<sup>*</sup></label>
             <input type="text" name="Name" value="Nimran" id="Name" disabled>
-        </div>
-        <div>
+<!--        </div>-->
+<!--        <div>-->
             <label for="Location">Location:<sup>*</sup></label>
             <input type="text" name="Location" value="The Cold Pits" id="Location" disabled>
-        </div>
-        <div>
+<!--        </div>-->
+<!--        <div>-->
             <label for="Hp">Hp:<sup>*</sup></label>
             <input type="number" name="Hp" value=1000 id="Hp" disabled>
-        </div>
-        <div>
-            <a href="boss-form.html">Edit</a>
+<!--        </div>-->
+        <div class="form-buttons">
+            <a href="boss-form.html" class="list-actions-button-edit">Edit</a>
         </div>
     </form>
 
@@ -44,9 +44,38 @@
     <table class="table-list">
         <thead>
         <tr>
-            <th></th>
+            <th>Weapon</th>
+            <th>min Difficulty</th>
+            <th>min Group Size</th>
+            <th>Drop Chance</th>
+            <th>Drop Date Start</th>
+            <th>Drop Date End</th>
         </tr>
         </thead>
+        <tr>
+            <td>Bloodied Dualblade</td>
+            <td>2</td>
+            <td>10</td>
+            <td>20%</td>
+            <td>10-10-2012</td>
+            <td>10-10-2016</td>
+        </tr>
+        <tr>
+            <td>Impure Mithril Edge</td>
+            <td>3</td>
+            <td>5</td>
+            <td>50%</td>
+            <td>10-10-2013</td>
+
+        </tr>
+        <tr>
+            <td>Armageddon</td>
+            <td>1</td>
+            <td>15</td>
+            <td>10%</td>
+            <td>10-10-2016</td>
+            <td>10-10-2018</td>
+        </tr>
     </table>
 
 </main>

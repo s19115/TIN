@@ -22,31 +22,52 @@
 </nav>
 <main>
     <h2>Details</h2>
-    <form>
-        <div>
-            <label for="Name">Name:<sup>*</sup></label>
-            <input type="text" name="Name" value="Nimran" id="Name" disabled>
-        </div>
-        <div>
-            <label for="Location">Location:<sup>*</sup></label>
-            <input type="text" name="Location" value="The Cold Pits" id="Location" disabled>
-        </div>
-        <div>
-            <label for="Hp">Hp:<sup>*</sup></label>
-            <input type="number" name="Hp" value=1000 id="Hp" disabled>
-        </div>
-        <div>
-            <a href="boss-form.html">Edit</a>
+    <form class="form">
+        <!--        <div>-->
+        <label for="Name">Name:<sup>*</sup></label>
+        <input type="text" name="Name" value="Armagedon" id="Name" disabled>
+        <!--        </div>-->
+        <!--        <div>-->
+        <label for="Damage">Damage<sup>*</sup></label>
+        <input type="number" name="Damage" value="40" id="Damage" disabled>
+        <!--        </div>-->
+        <!--        <div>-->
+        <label for="DamageType">Damage Type:<sup>*</sup></label>
+        <input type="number" name="DamageType" value=1 id="DamageType" disabled>
+        <!--        </div>-->
+        <div class="form-buttons">
+            <a href="boss-form.html" class="list-actions-button-edit">Edit</a>
         </div>
     </form>
 
-    <h2>Loot</h2>
+    <h2>Drops</h2>
     <table class="table-list">
         <thead>
         <tr>
-            <th></th>
+            <th>Boss</th>
+            <th>min Difficulty</th>
+            <th>min Group Size</th>
+            <th>Drop Chance</th>
+            <th>Drop Date Start</th>
+            <th>Drop Date End</th>
         </tr>
         </thead>
+        <tr>
+            <td>Jetid</td>
+            <td>2</td>
+            <td>10</td>
+            <td>20%</td>
+            <td>10-10-2013</td>
+            <td>10-10-2016</td>
+        </tr>
+        <tr>
+            <td>Nirman</td>
+            <td>3</td>
+            <td>5</td>
+            <td>50%</td>
+            <td>10-10-2013</td>
+
+        </tr>
     </table>
 
 </main>
