@@ -1,6 +1,8 @@
+
 html {
     background-color: #ecf0f1;
-    font-family: sans-serif;
+    font-family: "Comic Sans MS",sans-serif;
+
 }
 
 body {
@@ -17,7 +19,7 @@ nav {
 header,
 main,
 footer {
-    background-color: white;
+    background-color: rgba(139, 136, 136, 0.55);
 }
 
 header {
@@ -26,8 +28,8 @@ header {
 
 header,
 footer {
-    background-color: #34495e;
-    color: white;
+    background-color: #6541a5;
+    color: rgba(255, 0, 0, 0.84);
     padding: 1rem;
 }
 
@@ -41,7 +43,7 @@ header img {
 }
 */
 nav {
-    background-color: #bdc3c7;
+    background-color: #647cba;
 }
 
 nav ul {
@@ -64,12 +66,12 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #d35400;
+    background-color: #00a2d3;
     color: #ecf0f1;
 }
 
 nav ul li a.active {
-    background-color: #95a5a6;
+    background-color: #23abb3;
     color: #ecf0f1;
 }
 
@@ -78,25 +80,35 @@ main {
 }
 
 main h2 {
-    border-bottom: 1px solid #7f8c8d;
+    border-bottom: 1px solid #f60046;
     margin-bottom: 2rem;
 }
 
 .table-list {
-    border-collapse: collapse;
+    border-collapse:separate;
     color: #2c3e50;
     width: 100%;
+
+    border:solid black 1px;
+    border-radius:6px;
+    -moz-border-radius:6px;
 }
 
 .table-list,
 .table-list th,
 .table-list td {
-    border: 1px solid #ecf0f1;
+    border: 1px solid rgba(8, 59, 161, 0.54);
+
 }
+
 
 .table-list th,
 .table-list td {
     padding: 0.5rem;
+    text-align: center;
+
+
+
 }
 
 .table-list th,
@@ -127,16 +139,16 @@ footer {
     width: 75px;
 }
 
-.list-actions-button-details,
-.list-actions-button-edit,
-.list-actions-button-delete {
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 0.8rem;
-    text-align: center;
-    text-decoration: none;
-}
+/*.list-actions-button-details,*/
+/*.list-actions-button-edit,*/
+/*.list-actions-button-delete {*/
+/*    border: none;*/
+/*    border-radius: 20px;*/
+/*    color: white;*/
+/*    font-size: 0.8rem;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*}*/
 
 .list-actions-button-details,
 .list-actions-button-edit {
@@ -144,19 +156,19 @@ footer {
 }
 
 .list-actions-button-details {
-    background-color: #2980b9;
+    background-color: #2941b9;
 }
 
 .list-actions-button-details:hover {
-    background-color: #3498db;
+    background-color: #345edb;
 }
 
 .list-actions-button-edit {
-    background-color: #f39c12;
+    background-color: rgba(202, 18, 243, 0.75);
 }
 
 .list-actions-button-edit:hover {
-    background-color: #f1c40f;
+    background-color: rgb(192, 15, 241);
 }
 
 .list-actions-button-delete {
@@ -167,28 +179,28 @@ footer {
     background-color: #e74c3c;
 }
 
-.list-actions-button-details,
-.list-actions-button-edit,
-.list-actions-button-delete,
-.button-add {
-    border: none;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    font-size: 0.8rem;
-}
+/*.list-actions-button-details,*/
+/*.list-actions-button-edit,*/
+/*.list-actions-button-delete,*/
+/*.button-add {*/
+/*    border: none;*/
+/*    border-radius: 20px;*/
+/*    color: rgba(0, 0, 0, 0.2);*/
+/*    text-decoration: none;*/
+/*    text-align: center;*/
+/*    font-size: 0.8rem;*/
+/*}*/
 
 .button-add {
     padding: 0.5rem 1rem;
 }
 
 .button-add {
-    background-color: #27ae60;
+    background-color: #7d1aaf;
 }
 
 .button-add:hover {
-    background-color: #2ecc71;
+    background-color: #0ebb5e;
 }
 
 button,
@@ -247,7 +259,7 @@ abbr[title='required'] {
 .form-button-submit,
 .form-button-cancel {
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     color: white;
     text-decoration: none;
     text-align: center;
@@ -258,26 +270,27 @@ abbr[title='required'] {
 .form-button-submit,
 .form-button-cancel {
     padding: 0.5rem 1rem;
+    border-radius: 5rem;
 }
 
 .button-add,
 .form-button-submit {
-    background-color: #27ae60;
+    background-color: #0a381e;
 }
 
 .button-add:hover,
 .form-button-submit:hover {
-    background-color: #2ecc71;
+    background-color: #096c33;
 }
 
 .form-button-cancel,
 .list-actions-button-delete {
-    background-color: #c0392b;
+    background-color: #581c15;
 }
 
 .form-button-cancel:hover,
 .list-actions-button-delete:hover {
-    background-color: #e74c3c;
+    background-color: #8d3125;
 }
 
 .form-button-submit,
