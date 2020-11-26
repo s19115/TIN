@@ -25,10 +25,28 @@
     <form class="form">
         <!--        <div class="form-group">-->
         <label for="WeaponName">Weapon name<sup>*</sup></label>
-        <input type="text" name="Name" value="Bloodied Dualblade"  id="WeaponName" disabled>
+        <select id="WeaponName" name="Name" disabled>
+            <option value="Armageddon">Armageddon</option>
+            <option selected value="Bloodied Dualblade">Bloodied Dualblade</option>
+            <option value="Impure Mithril Edge">Impure Mithril Edge</option>
+            <option value="Hell's Scream">Hell's Scream</option>
+            <option value="Soul-Forged Fang">Soul-Forged Fang</option>
+            <option value="Dustbringer">Dustbringer</option>
+            <option value="Winterthorn">Winterthorn</option>
+            <option value="Memoire">Memoire</option>
+            <option value="Torment">Torment</option>
+            <option value="Phantom">Phantom</option>
+            <option value="Pure Scroll">Pure Scroll</option>
+        </select>
 
         <label for="BossName">Boss name<sup>*</sup></label>
-        <input type="text" name="Name" value="Nirman" id="BossName" disabled>
+        <select id="BossName" name="Name" disabled>
+            <option selected value="Nimran">Nirman</option>
+            <option value="Byldror">Byldror</option>
+            <option value="Jetid">Jetid</option>
+            <option value="Ulrenth">Ulrenth</option>
+
+        </select>
         <!--        </div>-->
         <!--        <div class="form-group">-->
         <label for="DropChance">Drop chance:<sup>*</sup></label>
@@ -48,8 +66,10 @@
         <input type="text" name="dateEnd" value="10.10.2016" id="dateEnd" disabled>
         <!--        </div>-->
         <div class="form-buttons">
-            <input type="submit" value="Add" class="form-button-submit">
-            <a href="boss-list.html" class="form-button-cancel">Cancel</a>
+<!--            <input type="submit" value="Edit" class="form-button-submit">-->
+
+            <a href="drop-editable.html" class="list-actions-button-edit">Edit</a>
+<!--            <a href="drop-list.html" class="form-button-cancel">Cancel</a>-->
         </div>
     </form>
 
