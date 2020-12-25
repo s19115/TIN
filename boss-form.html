@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script type="application/javascript" src="js/validationCommon.js"></script>
+    <script type="application/javascript" src="js/validationBossForm.js"></script>
     <title>Loot Drop</title>
 </head>
 <body>
@@ -21,20 +23,22 @@
 </nav>
 <main>
     <h2>New boss</h2>
-    <form class="form">
-<!--        <div class="form-group">-->
-            <label for="Name">Name:<sup>*</sup></label>
-            <input type="text" name="Name" id="Name">
-<!--        </div>-->
-<!--        <div class="form-group">-->
-            <label for="Location">Location:<sup>*</sup></label>
-            <input type="text" name="Location" id="Location">
-<!--        </div>-->
-<!--        <div class="form-group">-->
-            <label for="Hp">Hp:<sup>*</sup></label>
-            <input type="number" name="Hp" id="Hp">
-<!--        </div>-->
+    <form class="form" onsubmit="return validateForm();">
+
+        <label for="Name">Name:<sup>*</sup></label>
+        <input type="text" name="Name" id="Name">
+        <span id="errorName" class="errors-text"></span>
+
+        <label for="Location">Location:<sup>*</sup></label>
+        <input type="text" name="Location" id="Location">
+        <span id="errorLocation" class="errors-text"></span>
+
+        <label for="Hp">Hp:<sup>*</sup></label>
+        <input type="number" name="Hp" id="Hp">
+        <span id="errorHp" class="errors-text"></span>
+
         <div class="form-buttons">
+            <p id="errorSummary" class="errors-text"></p>
             <input type="submit" value="Add" class="form-button-submit">
             <a href="boss-list.html" class="form-button-cancel">Cancel</a>
         </div>
