@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css" />
+    <script type="application/javascript" src="js/validationCommon.js"></script>
+    <script type="application/javascript" src="js/validationWeaponForm.js"></script>
     <title>Loot Drop</title>
 </head>
 <body>
@@ -21,20 +23,22 @@
 </nav>
 <main>
     <h2>New weapon</h2>
-    <form class="form">
-        <!--        <div class="form-group">-->
+    <form class="form" onsubmit="return validateForm();">
+
         <label for="Name">Name:<sup>*</sup></label>
         <input type="text" name="Name" id="Name">
-        <!--        </div>-->
-        <!--        <div class="form-group">-->
+        <span id="errorName" class="errors-text"></span>
+
         <label for="Damage">Damage:<sup>*</sup></label>
         <input type="number" name="Damage" id="Damage">
-        <!--        </div>-->
-        <!--        <div class="form-group">-->
+        <span id="errorDamage" class="errors-text"></span>
+
         <label for="DamageType">Damage Type<sup>*</sup></label>
         <input type="number" name="DamageType" id="DamageType">
-        <!--        </div>-->
+        <span id="errorDamageType" class="errors-text"></span>
+
         <div class="form-buttons">
+            <p id="errorSummary" class="errors-text"></p>
             <input type="submit" value="Add" class="form-button-submit">
             <a href="weapons-list.html" class="form-button-cancel">Cancel</a>
         </div>

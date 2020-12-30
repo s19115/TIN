@@ -1,0 +1,16 @@
+<!--
+required arguments:
+boss object
+-->
+
+<%- include('./fragments/header.ejs') %>
+<mai>
+<h2><%=dataObject.name%> details</h2>
+    <form class="form">
+        <% for (let name of fieldsNames) {%>
+            <label for="<%=name%>"><%=name.replace(/\w/,c=>c.toUpperCase())%><sup>*</sup></label>
+            <input type="text" name="Name" value="Nimran" id="Name" disabled>
+        <%}%>
+    </form>
+</mai>
+<%- include('./fragments/footer.ejs') %>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/styles.css" />
+    <title>Loot Drop</title>
+
+</head>
+<body>
+<header>
+    <h1>Loot Drop</h1>
+    <img src="../../public/images/logo.png" alt="Loot Drop Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="../index.ejs">Main page</a> </li>
+        <li><a href="boss-list.ejs">Bosses</a> </li>
+        <li><a href="views/pages/weapons-list.ejs">Weapons</a> </li>
+        <li><a href="views/pages/drop-list.ejs" class="active">Drops</a> </li>
+    </ul>
+</nav>
+<main>
+    <h2>Details</h2>
+    <form class="form">
+        <!--        <div class="form-group">-->
+        <label for="WeaponName">Weapon name<sup>*</sup></label>
+        <select id="WeaponName" name="Name" disabled>
+            <option value="Armageddon">Armageddon</option>
+            <option selected value="Bloodied Dualblade">Bloodied Dualblade</option>
+            <option value="Impure Mithril Edge">Impure Mithril Edge</option>
+            <option value="Hell's Scream">Hell's Scream</option>
+            <option value="Soul-Forged Fang">Soul-Forged Fang</option>
+            <option value="Dustbringer">Dustbringer</option>
+            <option value="Winterthorn">Winterthorn</option>
+            <option value="Memoire">Memoire</option>
+            <option value="Torment">Torment</option>
+            <option value="Phantom">Phantom</option>
+            <option value="Pure Scroll">Pure Scroll</option>
+        </select>
+
+        <label for="BossName">Boss name<sup>*</sup></label>
+        <select id="BossName" name="Name" disabled>
+            <option selected value="Nimran">Nirman</option>
+            <option value="Byldror">Byldror</option>
+            <option value="Jetid">Jetid</option>
+            <option value="Ulrenth">Ulrenth</option>
+
+        </select>
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <label for="DropChance">Drop chance:<sup>*</sup></label>
+        <input type="text" name="DropChance" value="20%"  id="DropChance" disabled>
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <label for="minDifficulty">Min difficulty<sup>*</sup></label>
+        <input type="number" name="minDifficulty" value="2" id="minDifficulty" disabled>
+
+        <label for="minGroupSize">Min group size<sup>*</sup></label>
+        <input type="number" name="minGroupSize" value="10" id="minGroupSize" disabled>
+
+        <label for="dateStart">Date start<sup>*</sup></label>
+        <input type="text" name="dateStart" value="10-10-2013" id="dateStart" disabled>
+
+        <label for="dateEnd">Date end<sup>*</sup></label>
+        <input type="text" name="dateEnd" value="10.10.2016" id="dateEnd" disabled>
+        <!--        </div>-->
+        <div class="form-buttons">
+<!--            <input type="submit" value="Edit" class="form-button-submit">-->
+
+            <a href="views/pages/drop-editable.ejs" class="list-actions-button-edit">Edit</a>
+<!--            <a href="drop-list.ejs" class="form-button-cancel">Cancel</a>-->
+        </div>
+    </form>
+
+<!--    <h2>Drops</h2>-->
+<!--    <table class="table-list">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Weapon</th>-->
+<!--            <th>Boss</th>-->
+<!--            <th>min Difficulty</th>-->
+<!--            <th>min Group Size</th>-->
+<!--            <th>Drop Chance</th>-->
+<!--            <th>Drop Date Start</th>-->
+<!--            <th>Drop Date End</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tr>-->
+<!--            <td>Bloodied Dualblade</td>-->
+<!--            <td>Nirman</td>-->
+<!--            <td>2</td>-->
+<!--            <td>10</td>-->
+<!--            <td>20%</td>-->
+<!--            <td>10-10-2013</td>-->
+<!--            <td>10-10-2016</td>-->
+<!--        </tr>-->
+
+<!--    </table>-->
+
+</main>
+<footer>
+    Gustaw Ignut, s19115
+</footer>
+</body>
+</html>

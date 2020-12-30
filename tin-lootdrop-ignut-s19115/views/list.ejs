@@ -1,0 +1,29 @@
+<%- include('./fragments/header.ejs') %>
+<main>
+    <h2><%=url.replace(/\w/,c=>c.toUpperCase())%> list</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <% for (let name of columnNames) {%>
+                <th><%= name.name%></th>
+            <%}%>
+                <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let boss of bosses) {%>
+            <tr>
+                <td><%= boss.name%></td>
+                <td><%= boss.location%></td>
+                <td><%= boss.hp%></td>
+                <td>
+                    <%- include('./fragments/actionPanel.ejs',{url: url, targetId: boss._id});%>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <p><a href="boss-form.ejs" class="button-add">Add new <%=url%></a></p>
+</main>
+
+<%- include('./fragments/footer.ejs') %>
