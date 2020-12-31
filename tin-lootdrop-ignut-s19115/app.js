@@ -9,9 +9,18 @@ sequelizeInit()
     .catch(err => {
       console.log(err);
     });
-var indexRouter = require('./routes/index');
+
+const indexRouter = require('./routes/index');
+
 const bossApiRouter=require('./routes/api/bossApiRoute');
 const bossRouter=require('./routes/bossRoute');
+
+const weaponApiRouter=require('./routes/api/weaponApiRoute');
+const weaponRouter=require('./routes/weaponRoute');
+
+const dropApiRouter=require('./routes/api/dropApiRoute');
+const dropRouter=require('./routes/dropRoute');
+
 
 var app = express();
 
@@ -30,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/boss',bossRouter)
 app.use('/api/boss',bossApiRouter);
+
 
 
 // catch 404 and forward to error handler

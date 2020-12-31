@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const bossApiController = require('../../api/BossAPI');
+const bossApiController = require('../../api/bossAPI');
 
 router.get('/', bossApiController.getBosses);
 router.get('/:boss_id', bossApiController.getBossById);
