@@ -15,11 +15,11 @@ const indexRouter = require('./routes/index');
 const bossApiRouter=require('./routes/api/bossApiRoute');
 const bossRouter=require('./routes/bossRoute');
 
-const weaponApiRouter=require('./routes/api/weaponApiRoute');
-const weaponRouter=require('./routes/weaponRoute');
-
-const dropApiRouter=require('./routes/api/dropApiRoute');
-const dropRouter=require('./routes/dropRoute');
+// const weaponApiRouter=require('./routes/api/weaponApiRoute');
+// const weaponRouter=require('./routes/weaponRoute');
+//
+// const dropApiRouter=require('./routes/api/dropApiRoute');
+// const dropRouter=require('./routes/dropRoute');
 
 
 var app = express();
@@ -48,14 +48,14 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+//
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 module.exports = app;

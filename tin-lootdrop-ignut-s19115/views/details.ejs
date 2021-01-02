@@ -1,16 +1,28 @@
-<!--
-required arguments:
-boss object
--->
+<% dataName, data,dataModel %>
+<%- include('./common/functions.ejs') %>
+<% var navLocation, url %>
+<% navLocation = url = lowerCase(dataName) %>
 
-<%- include('./fragments/header.ejs') %>
-<mai>
-<h2><%=dataObject.name%> details</h2>
+
+
+<%- include('./fragments/header.ejs', {navLocation: navLocation}) %>
+<main>
+    <h2><%= data.name %> details</h2>
     <form class="form">
-        <% for (let name of fieldsNames) {%>
-            <label for="<%=name%>"><%=name.replace(/\w/,c=>c.toUpperCase())%><sup>*</sup></label>
-            <input type="text" name="Name" value="Nimran" id="Name" disabled>
-        <%}%>
+        <% for (let column of Object.getOwnPropertyNames(dataModel)){ %>
+        <% if(!dataModel[column].hidden) {%>
+                <label for="<%=upperCase(dataModel[column]["name"])%>"><%=upperCase(dataModel[column]["name"])%>
+                    <% if(required(dataModel[column])){ %>
+                        <sup>*</sup>
+                    <% } %>
+                </label>
+                <input type="<%=type()%>" name="<%upperCase(column)%>" value="<%=data["dataValues"][column]%>" id="<%=dataModel[column]%>" disabled>
+                <span id="error<%=column%>>" class="errors-text"></span>
+            <% } %>
+        <% } %>
+        <div class="form-buttons">
+            <a href="/<%=url%>/edit" class="list-actions-button-edit">Edit</a>
+        </div>
     </form>
-</mai>
+</main>
 <%- include('./fragments/footer.ejs') %>

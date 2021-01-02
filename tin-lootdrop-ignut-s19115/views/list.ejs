@@ -1,29 +1,41 @@
-<%- include('./fragments/header.ejs') %>
+<% dataName, data, dataModel %>
+<%- include('./common/functions.ejs') %>
+<% var navLocation, url %>
+<% navLocation = url = lowerCase(dataName) %>
+
+
+
+<%- include('./fragments/header.ejs', {navLocation: navLocation}) %>
 <main>
-    <h2><%=url.replace(/\w/,c=>c.toUpperCase())%> list</h2>
+    <h2><%= upperCase(dataName) %> list</h2>
     <table class="table-list">
         <thead>
         <tr>
-            <% for (let name of columnNames) {%>
-                <th><%= name.name%></th>
-            <%}%>
-                <th>Actions</th>
+            <% for (let column of Object.getOwnPropertyNames(dataModel)) { %>
+                <% if(!dataModel[column].hidden) {%>
+                <th><%= upperCase(dataModel[column].name) %></th>
+                <% } %>
+            <% } %>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <% for (let boss of bosses) {%>
+        <% for (let object in data) { %>
+        <% if(!object["isDetail"]) { %>
+            <% dataObject = data[object]["dataValues"] %>
             <tr>
-                <td><%= boss.name%></td>
-                <td><%= boss.location%></td>
-                <td><%= boss.hp%></td>
+                <td><%= dataObject.name %></td>
+                <td><%= dataObject.location %></td>
+                <td><%= dataObject.hp %></td>
                 <td>
-                    <%- include('./fragments/actionPanel.ejs',{url: url, targetId: boss._id});%>
+                    <%- include('./fragments/actionPanel.ejs',{url: url, targetId: dataObject._id}) %>
                 </td>
             </tr>
         <% } %>
+        <% } %>
         </tbody>
     </table>
-    <p><a href="boss-form.ejs" class="button-add">Add new <%=url%></a></p>
+    <p><a href="/<%= url %>/add" class="button-add">Add new <%= dataName %></a></p>
 </main>
 
 <%- include('./fragments/footer.ejs') %>

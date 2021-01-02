@@ -1,0 +1,21 @@
+<%
+lowerCase = function (string) {
+    if(typeof string==='string')
+    return string.replace(/\w/, c => c.toLowerCase());
+    return string;
+}
+upperCase = function (string) {
+    if(typeof string==='string')
+    return string.replace(/\w/, c => c.toUpperCase());
+    return string;
+}
+desiredProperty = function (field, object) {
+    return Object.hasOwnProperty.call(object, field);
+}
+required=function (field){
+    return !field.allowNull;
+}
+type = function (field){
+    return "text";
+}
+%>

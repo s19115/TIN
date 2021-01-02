@@ -1,0 +1,23 @@
+Data:
+Tablica:
+    obiekt 1
+        pole a: a
+        pole b: b
+        pole c: c
+        pole d: d
+        Powiazania:
+            obiekt X
+            obiekt Y
+    obiekt 2
+    obiekt 3
+definicja:
+    pole a:
+        nazwa
+        typ
+        czyDetal
+    pole b: b
+    pole c: c
+    pole d: d
+    Powiązania:
+        Definicja 1
+        Definicja 2

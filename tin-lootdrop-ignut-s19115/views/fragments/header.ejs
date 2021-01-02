@@ -1,3 +1,4 @@
+<%navLocation%>
 <!DOCTYPE html>
 <!--suppress HtmlUnknownTarget -->
 <html lang="pl-PL">
@@ -14,9 +15,9 @@
 </header>
 <nav>
     <ul>
-        <li><a href="index.html" class="active">Main page</a></li>
-        <li><a href="boss-list.ejs">Bosses</a></li>
-        <li><a href="weapons-list.html">Weapons</a></li>
-        <li><a href="drop-list.html">Drops</a></li>
+        <li><a href="/" class="<%= navLocation == 'index' ? 'active' : ''%>">Main page</a></li>
+        <li><a href="/boss" class="<%= navLocation == 'boss' ? 'active' : ''%>">Bosses</a></li>
+        <li><a href="/weapon" class="<%= navLocation == 'weapon' ? 'active' : ''%>">Weapons</a></li>
+        <li><a href="/drop" class="<%= navLocation == 'drop' ? 'active' : ''%>">Drops</a></li>
     </ul>
 </nav>
