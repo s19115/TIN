@@ -18,7 +18,7 @@ required = function (field) {
 type = function (string) {
     try {
         if (string === "INTEGER") return "number";
-        if (string.includes("DECIMAL")) return "number\" step=\"0.001";
+        if (string.includes("DECIMAL")) return "number\" step=\"0.01";
         if (string === "DATE" || string === "DATETIME") return "DATE";
     } catch (e) {
 
@@ -46,11 +46,11 @@ getField = function (field) {
     return field;
 }
 formatDate = function (d) {
-    let day=d.getDate();
-    if(day<10)day="0"+day;
-    let month=d.getDate()+1;
-    if(month<10)month="0"+month;
-    return  d.getFullYear()+"-"+month.toString()+"-"+day.toString();
+    let day = d.getDate();
+    if (day < 10) day = "0" + day;
+    let month = d.getDate() + 1;
+    if (month < 10) month = "0" + month;
+    return d.getFullYear() + "-" + month.toString() + "-" + day.toString();
 }
 cutId = function (name) {
     return name.replace('_id', '');
@@ -62,5 +62,11 @@ checkIfAssociationIsJoinedOn = function (association, dataModel) {
     } catch (e) {
         return false;
     }
+}
+getPlaceHolder = function (field) {
+    if (field.toString() == "VARCHAR(255)") return "np. text abcd";
+    if (field.toString() == "INTEGER") return "np. 5";
+    if (field.toString().includes("DECIMAL")) return "np. 0,25";
+    return field;
 }
 %>

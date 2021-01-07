@@ -11,31 +11,31 @@
     <table class="table-list">
         <thead>
         <tr>
-            <% for (let column of Object.getOwnPropertyNames(dataModel)) { %>
-                <% if(dataModel[column].joinedOn) { %>
-                    <th><%= upperCase(cutId(dataModel[column].name)) %></th>
+            <% for (let dataFieldKey of Object.getOwnPropertyNames(dataModel)) { %>
+                <% if(dataModel[dataFieldKey].joinedOn) { %>
+                    <th><%= upperCase(cutId(dataModel[dataFieldKey].name)) %></th>
                 <% } %>
-                <% if(!dataModel[column].hidden) { %>
-                    <th><%= upperCase(dataModel[column].name) %></th>
+                <% if(!dataModel[dataFieldKey].hidden) { %>
+                    <th><%= upperCase(dataModel[dataFieldKey].name) %></th>
                 <% } %>
             <% } %>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <% for (let object in data) { %>
-            <% dataObject = data[object]["dataValues"] %>
+        <% for (let entry in data) { %>
+            <% entrysData = data[entry]["dataValues"] %>
             <tr>
-                <% for (let column of Object.getOwnPropertyNames(dataModel)) { %>
-                    <% if (dataModel[column].joinedOn){ %>
-                        <td><%= data[object][upperCase(cutId(dataModel[column].name))]["dataValues"].name %></td>
+                <% for (let dataFieldKey of Object.getOwnPropertyNames(dataModel)) { %>
+                    <% if (dataModel[dataFieldKey].joinedOn){ %>
+                        <td><%= data[entry][upperCase(cutId(dataModel[dataFieldKey].name))]["dataValues"].name %></td>
                     <% } %>
-                    <% if(!dataModel[column].hidden) { %>
-                        <td><%= getField(dataObject[column]) %></td>
+                    <% if(!dataModel[dataFieldKey].hidden) { %>
+                        <td><%= getField(entrysData[dataFieldKey]) %></td>
                     <% } %>
                 <% } %>
                 <td>
-                    <%- include('./fragments/actionPanel.ejs',{url: url, targetId: dataObject._id}) %>
+                    <%- include('./fragments/actionPanel.ejs',{url: url, targetId: entrysData._id}) %>
                 </td>
             </tr>
         <% } %>

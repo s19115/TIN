@@ -35,7 +35,9 @@ function validateForm() {
     if(!checkRequired(dateFromInput.value)){
         valid=false;
         dateFromInput.classList.add("error-input");
+        errorDateFrom.innerText="Pole jest wymagane";
     }
+
     if(!checkIfAfterStartingDate(dateFromInput.value,dateToInput.value)){
         valid =false;
         dateToInput.classList.add("error-input");

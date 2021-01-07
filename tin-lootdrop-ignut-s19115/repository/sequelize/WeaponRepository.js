@@ -22,10 +22,10 @@ exports.getDataById = (weaponId) => {
             include: [{
                 model: Drop,
                 as: 'Drops',
-                include: [{
-                    model: Weapon,
-                    as: 'Weapon'
-                }]
+                // include: [{
+                //     model: Boss,
+                //     as: 'Boss'
+                // }]
             }]
         });
 };

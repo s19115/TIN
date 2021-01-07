@@ -44,12 +44,17 @@ exports.getDataById = (employmentId) => {
 };
 
 exports.createData = (data) => {
+    let dataToPlaceHolder;
+    if(data.dateTo==="") dataToPlaceHolder=null;
+    else dataToPlaceHolder=data.dateTo;
     return Drop.create({
-        emp_id: data.emp_id,
-        dept_id: data.dept_id,
-        salary: data.salary,
-        dateFrom: data.dateFrom,
-        dateTo: data.dateTo
+        dropChance: data.dropChance,
+        minDifficulty: data.minDifficulty,
+        minSizeOfGroup: data.minSizeOfGroup,
+        boss_id: data.boss_id,
+        weapon_id: data.weapon_id,
+        dateFrom: data.dateFrom.toString(),
+        dateTo: dataToPlaceHolder
     });
 };
 

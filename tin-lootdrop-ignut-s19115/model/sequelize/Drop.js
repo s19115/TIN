@@ -9,7 +9,7 @@ const Drop = sequelize.define('Drop', {
         primaryKey: true
     },
     dropChance: {
-        type: Sequelize.DECIMAL(4, 3),
+        type: Sequelize.DECIMAL(5, 2),
         allowNull: false,
         validate: {
             notEmpty: {
@@ -27,14 +27,21 @@ const Drop = sequelize.define('Drop', {
     },
     dateFrom: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            }
+        }
     },
     dateTo: {
         type: Sequelize.DATEONLY,
         allowNull: true,
+        default: null,
         validate: {
             isAfterBeginingDate(val) {
                 const dateFrom = new Date(this.dateFrom);
+                if (val === null) return
                 const dateTo = new Date(val);
                 if (dateTo < dateFrom && dateTo != null) throw new Error("Data końca nie może być wcześniejsza niż data początku!");
             }
@@ -77,10 +84,20 @@ const Drop = sequelize.define('Drop', {
     boss_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+        },
     },
     weapon_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+        }
     }
 });
 

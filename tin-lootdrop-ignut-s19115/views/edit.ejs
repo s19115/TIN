@@ -4,12 +4,11 @@
 <% navLocation = url = lowerCase(dataName) %>
 
 
-
 <%- include('./fragments/header.ejs', {navLocation: navLocation}) %>
 <main>
     <h2><%= data.name === undefined ? dataName : data.name %> details</h2>
     <!--    onsubmit="return validateForm()"-->
-    <form class="form" action="" method="post">
+    <form class="form" action="" onsubmit="return validateForm()" method="post">
         <% for (let column of Object.getOwnPropertyNames(dataModel)){ %>
             <% if(dataModel[column].joinedOn){ %>
                 <label for="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>"><%= upperCase(cutId(dataModel[column].name)) + " name" %>
@@ -17,7 +16,7 @@
                         <sup>*</sup>
                     <% } %>
                 </label>
-                <select id="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>" name="Name">
+                <select id="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>" name="<%= column %>">
                     <% for (let name of dataModel["associations"][upperCase(cutId(dataModel[column].name))]) { %>
                         <option value="<%= name["_id"] %>"><%= name["name"] %></option>
                     <% } %>

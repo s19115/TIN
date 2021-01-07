@@ -9,7 +9,7 @@
 <main>
     <h2>Add new <%= lowerCase(dataName) %></h2>
     <!--    onsubmit="return validateForm()"-->
-    <form class="form" novalidate action="" method="post">
+    <form class="form" novalidate action="" onsubmit="return validateForm()" method="post">
         <% for (let column of Object.getOwnPropertyNames(dataModel)){ %>
             <% if(dataModel[column].joinedOn){ %>
                 <label for="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>"><%= upperCase(cutId(dataModel[column].name)) + " name" %>
@@ -18,8 +18,9 @@
                     <% } %>
                 </label>
                 <select id="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>" name="<%= column%>">
+                    <option value="" selected disabled hidden>Choose here</option>
                     <% for (let name of dataModel["associations"][upperCase(cutId(dataModel[column].name))]) { %>
-                        <option value="<%= name %>"><%= name %></option>
+                        <option value="<%= name["_id"] %>"><%= name["name"] %></option>
                     <% } %>
                 </select>
                 <span id="error<%= upperCase(column) %>" class="errors-text"></span>
@@ -34,6 +35,7 @@
                 <input type="<%- type(dataModel[column].type.toString()) %>"
                        name="<%= dataModel[column].name %>"
                        id="<%= upperCase(dataModel[column].name) %>"
+                       placeholder="<%=getPlaceHolder(dataModel[column].type)%>"
                        class="<%= validationErrors.find(e => e.path.includes(column)) ? 'error-input' : '' %>">
                 <span id="error<%= upperCase(column) %>" class="errors-text">
                     <% if (validationErrors.find(e => e.path.includes(column))) { %>
