@@ -3,10 +3,10 @@ const router = express.Router();
 
 const dropApiController = require('../../api/dropAPI');
 
-router.get('/', dropApiController.getdropes);
-router.get('/:drop_id', dropApiController.getdropById);
-router.post('/', dropApiController.createdrop);
-router.put('/:drop_id', dropApiController.updatedrop);
-router.delete('/:drop_id', dropApiController.deletedrop);
+router.get('/', dropApiController.getDrops);
+router.get('/:drop_id', dropApiController.getDropById);
+router.post('/', dropApiController.createDrop);
+router.put('/:drop_id', dropApiController.updateDrop);
+router.delete('/:drop_id', dropApiController.deleteDrop);
 
 module.exports = router

@@ -3,9 +3,17 @@ const Sequelize = require('sequelize');
 const Drop = require('../../model/sequelize/Drop');
 const Boss = require('../../model/sequelize/Boss');
 const Weapon = require('../../model/sequelize/Weapon');
+const Commons = require("../../repository/sequelize/CommonRepositoryFunctions");
 
-exports.getDrops = () => {
-    return Drop.findAll({include: [
+const fieldsToHide = ["_id","weapon_id","boss_id"];
+const fieldsToJoinOn = ["boss_id", "weapon_id"];
+const fieldToShowOnJoin = "name";
+exports.getDataModel = () => {
+    return Commons.getDataModel(Drop, fieldsToHide, fieldsToJoinOn, fieldToShowOnJoin);
+}
+exports.getData = () => {
+    return Drop.findAll({
+        include: [
             {
                 model: Boss,
                 as: 'Boss'
@@ -17,9 +25,13 @@ exports.getDrops = () => {
     });
 };
 
+exports.getDataName = () => {
+    return Drop.name;
+}
 
-exports.getDropById = (DropId) => {
-    return Drop.findByPk(DropId, {include: [
+exports.getDataById = (employmentId) => {
+    return Drop.findByPk(employmentId, {
+        include: [
             {
                 model: Boss,
                 as: 'Boss'
@@ -31,31 +43,26 @@ exports.getDropById = (DropId) => {
     });
 };
 
-exports.createDrop = (data) => {
-    console.log(JSON.stringify(data));
-
+exports.createData = (data) => {
     return Drop.create({
-        boss_id: data.boss_id,
-        weapon_id: data.weapon_id,
-        dropChance: data.dropChance,
+        emp_id: data.emp_id,
+        dept_id: data.dept_id,
+        salary: data.salary,
         dateFrom: data.dateFrom,
-        dateTo: data.dateTo,
-        minSizeOfGroup: data.minSizeOfGroup,
-        minDifficulty: data.minDifficulty,
-
+        dateTo: data.dateTo
     });
 };
 
-exports.updateDrop = (DropId, data) => {
-    return Drop.update(data, {where: {_id: DropId }});
+exports.updateData = (dropId, data) => {
+    return Drop.update(data, {where: {_id: dropId}});
 }
 
-exports.deleteDrop = (DropId) => {
+exports.deleteData = (dropId) => {
     return Drop.destroy({
-        where: { _id: DropId }
+        where: {_id: dropId}
     });
 }
 
-exports.deleteManyDrops = (DropIds) => {
-    return Drop.find({ _id: { [Sequelize.Op.in]: DropIds }})
+exports.deleteManyData = (dropIds) => {
+    return Drop.find({_id: {[Sequelize.Op.in]: dropIds}})
 }

@@ -12,8 +12,11 @@
         <thead>
         <tr>
             <% for (let column of Object.getOwnPropertyNames(dataModel)) { %>
-                <% if(!dataModel[column].hidden) {%>
-                <th><%= upperCase(dataModel[column].name) %></th>
+                <% if(dataModel[column].joinedOn) { %>
+                    <th><%= upperCase(cutId(dataModel[column].name)) %></th>
+                <% } %>
+                <% if(!dataModel[column].hidden) { %>
+                    <th><%= upperCase(dataModel[column].name) %></th>
                 <% } %>
             <% } %>
             <th>Actions</th>
@@ -21,17 +24,20 @@
         </thead>
         <tbody>
         <% for (let object in data) { %>
-        <% if(!object["isDetail"]) { %>
             <% dataObject = data[object]["dataValues"] %>
             <tr>
-                <td><%= dataObject.name %></td>
-                <td><%= dataObject.location %></td>
-                <td><%= dataObject.hp %></td>
+                <% for (let column of Object.getOwnPropertyNames(dataModel)) { %>
+                    <% if (dataModel[column].joinedOn){ %>
+                        <td><%= data[object][upperCase(cutId(dataModel[column].name))]["dataValues"].name %></td>
+                    <% } %>
+                    <% if(!dataModel[column].hidden) { %>
+                        <td><%= getField(dataObject[column]) %></td>
+                    <% } %>
+                <% } %>
                 <td>
                     <%- include('./fragments/actionPanel.ejs',{url: url, targetId: dataObject._id}) %>
                 </td>
             </tr>
-        <% } %>
         <% } %>
         </tbody>
     </table>

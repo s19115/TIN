@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css"/>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validation<%=upperCase(navLocation)%>.js"></script>
     <title>Loot Drop</title>
 </head>
 <body>
@@ -15,7 +17,7 @@
 </header>
 <nav>
     <ul>
-        <li><a href="/" class="<%= navLocation == 'index' ? 'active' : ''%>">Main page</a></li>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main page</a></li>
         <li><a href="/boss" class="<%= navLocation == 'boss' ? 'active' : ''%>">Bosses</a></li>
         <li><a href="/weapon" class="<%= navLocation == 'weapon' ? 'active' : ''%>">Weapons</a></li>
         <li><a href="/drop" class="<%= navLocation == 'drop' ? 'active' : ''%>">Drops</a></li>

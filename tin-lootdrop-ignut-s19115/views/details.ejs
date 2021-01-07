@@ -1,4 +1,4 @@
-<% dataName, data,dataModel %>
+<% dataName, data, dataModel %>
 <%- include('./common/functions.ejs') %>
 <% var navLocation, url %>
 <% navLocation = url = lowerCase(dataName) %>
@@ -7,22 +7,81 @@
 
 <%- include('./fragments/header.ejs', {navLocation: navLocation}) %>
 <main>
-    <h2><%= data.name %> details</h2>
+    <h2><%= data.name === undefined ? dataName : data.name %> details</h2>
     <form class="form">
         <% for (let column of Object.getOwnPropertyNames(dataModel)){ %>
-        <% if(!dataModel[column].hidden) {%>
-                <label for="<%=upperCase(dataModel[column]["name"])%>"><%=upperCase(dataModel[column]["name"])%>
+            <% if(dataModel[column].joinedOn){ %>
+                <label for="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>"><%= upperCase(cutId(dataModel[column].name)) + " name" %>
                     <% if(required(dataModel[column])){ %>
                         <sup>*</sup>
                     <% } %>
                 </label>
-                <input type="<%=type()%>" name="<%upperCase(column)%>" value="<%=data["dataValues"][column]%>" id="<%=dataModel[column]%>" disabled>
-                <span id="error<%=column%>>" class="errors-text"></span>
+                <input type="<%- type() %>" name="<% upperCase(column) %>" value="<%= data[upperCase(cutId(dataModel[column].name))]["dataValues"].name %>"
+                       id="<%= dataModel[column] %>" disabled>
+                <span id="error<%= column %>>" class="errors-text"></span>
+
+            <% } %>
+            <% if(!dataModel[column].hidden) { %>
+                <label for="<%= upperCase(dataModel[column]["name"]) %>"><%= upperCase(dataModel[column]["name"]) %>
+                    <% if(required(dataModel[column])){ %>
+                        <sup>*</sup>
+                    <% } %>
+                </label>
+                <input type="<%- type() %>" name="<% upperCase(column) %>" value="<%= getField(data["dataValues"][column]) %>"
+                       id="<%= dataModel[column] %>" disabled>
+                <span id="error<%= column %>>" class="errors-text"></span>
             <% } %>
         <% } %>
         <div class="form-buttons">
-            <a href="/<%=url%>/edit" class="list-actions-button-edit">Edit</a>
+            <a href="/<%= url %>/edit/<%= data._id %>" class="list-actions-button-edit">Edit</a>
         </div>
     </form>
+
+    <% for(let assoc of dataModel.associations) { %>
+        <% if(!checkIfAssociationIsJoinedOn(assoc, dataModel)) { %>
+            <h2><%= assoc %></h2>
+            <% if (data[assoc]["length"] > 0){ %>
+                <table class="table-list">
+                    <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[assoc][0]["dataValues"]))) %>
+                    <thead>
+                    <tr>
+                        <% for (let columnName of names) { %>
+                            <th><%= columnName %></th>
+                        <% } %>
+                    </tr>
+                    </thead>
+                    <% for(let abcd in data[assoc]) { %>
+                        <tr>
+                            <% for(let field of names) { %>
+
+                                <td><%= getField(data[assoc][abcd]["dataValues"][field]) %></td>
+
+                            <% } %>
+                        </tr>
+                    <% } %>
+                </table>
+            <% } else if (typeof data[assoc]["dataValues"] !== 'undefined'){ %>
+                <table class="table-list">
+                    <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[assoc]["dataValues"]))) %>
+                    <thead>
+                    <tr>
+                        <% for (let columnName of names) { %>
+                            <th><%= columnName %></th>
+                        <% } %>
+                    </tr>
+                    </thead>
+
+                    <tr>
+                        <% for(let field of names) { %>
+
+                            <td><%= getField(data[assoc]["dataValues"][field]) %></td>
+
+                        <% } %>
+                    </tr>
+
+                </table>
+            <% } %>
+        <% } %>
+    <% } %>
 </main>
 <%- include('./fragments/footer.ejs') %>

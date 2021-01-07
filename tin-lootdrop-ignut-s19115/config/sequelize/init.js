@@ -5,25 +5,24 @@ const Weapon = require('../../model/sequelize/Weapon');
 const Drop = require('../../model/sequelize/Drop');
 
 module.exports = () => {
-    Boss.hasMany(Drop, {
-        as: 'Drops',
-        foreignKey: {name: 'boss_id', allowNull: false},
-        constraints: true,
-        onDelete: 'CASCADE'
-    });
-    Drop.belongsTo(Boss, {as: 'Boss', foreignKey: {name: 'boss_id', allowNull: false}});
     Weapon.hasMany(Drop, {
         as: 'Drops',
         foreignKey: {name: 'weapon_id', allowNull: false},
         constraints: true,
         onDelete: 'CASCADE'
     });
+    Boss.hasMany(Drop, {
+        as: 'Drops',
+        foreignKey: {name: 'boss_id', allowNull: false},
+        constraints: true,
+        onDelete: 'CASCADE'
+    });
     Drop.belongsTo(Weapon, {as: 'Weapon', foreignKey: {name: 'weapon_id', allowNull: false}});
-
+    Drop.belongsTo(Boss, {as: 'Boss', foreignKey: {name: 'boss_id', allowNull: false}});
     let allBosses, allWeapons;
     return sequelize
         //{force: true}
-        .sync()
+        .sync({force: true})
         .then(() => {
             return Boss.findAll();
         })

@@ -1,0 +1,79 @@
+<% dataName, data, dataModel, validationErrors %>
+<%- include('./common/functions.ejs') %>
+<% var navLocation, url %>
+<% navLocation = url = lowerCase(dataName) %>
+
+
+
+<%- include('./fragments/header.ejs', {navLocation: navLocation}) %>
+<main>
+    <h2><%= data.name === undefined ? dataName : data.name %> details</h2>
+    <!--    onsubmit="return validateForm()"-->
+    <form class="form" action="" method="post">
+        <% for (let column of Object.getOwnPropertyNames(dataModel)){ %>
+            <% if(dataModel[column].joinedOn){ %>
+                <label for="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>"><%= upperCase(cutId(dataModel[column].name)) + " name" %>
+                    <% if(required(dataModel[column])){ %>
+                        <sup>*</sup>
+                    <% } %>
+                </label>
+                <select id="<%= upperCase(cutId(dataModel[column].name)) + "Name" %>" name="Name">
+                    <% for (let name of dataModel["associations"][upperCase(cutId(dataModel[column].name))]) { %>
+                        <option value="<%= name["_id"] %>"><%= name["name"] %></option>
+                    <% } %>
+                </select>
+                <span id="error<%= column %>" class="errors-text"></span>
+            <% } %>
+            <% if(!dataModel[column].hidden) { %>
+                <label for="<%= upperCase(dataModel[column]["name"]) %>"><%= upperCase(dataModel[column]["name"]) + ":" %>
+                    <% if(required(dataModel[column])){ %>
+                        <sup>*</sup>
+                    <% } %>
+                </label>
+                <input type="<%- type(dataModel[column].type.toString()) %>"
+                       name="<%= dataModel[column].name %>"
+                       value="<%= getField(data["dataValues"][column]) %>"
+                       id="<%= upperCase(dataModel[column].name) %>"
+                       class="<%= validationErrors.find(e => e.path.includes(column)) ? 'error-input' : '' %>">
+                <span id="error<%= upperCase(column) %>" class="errors-text">
+                    <% if (validationErrors.find(e => e.path.includes(column))) { %>
+                        <%= validationErrors.find(e => e.path.includes(column)).message %>
+                    <% } %>
+                </span>
+            <% } %>
+        <% } %>
+        <div class="form-buttons">
+            <p id="errorSummary" class="errors-text"></p>
+            <input type="submit" value="Save" class="form-button-submit">
+            <a href="/<%= url %>/details/<%= data._id %>" class="form-button-cancel">Cancel</a>
+        </div>
+    </form>
+
+    <% for(let assoc of dataModel.associations) { %>
+        <% if(!checkIfAssociationIsJoinedOn(assoc, dataModel)) { %>
+            <h2><%= assoc %></h2>
+            <% if (data[assoc]["length"] > 0){ %>
+                <table class="table-list">
+                    <% var names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[assoc][0]["dataValues"]))) %>
+                    <thead>
+                    <tr>
+                        <% for (let columnName of names) { %>
+                            <th><%= columnName %></th>
+                        <% } %>
+                    </tr>
+                    </thead>
+                    <% for(let abcd in data[assoc]) { %>
+                        <tr>
+                            <% for(let field of names) { %>
+
+                                <td><%= getField(data[assoc][abcd]["dataValues"][field]) %></td>
+
+                            <% } %>
+                        </tr>
+                    <% } %>
+                </table>
+            <% } %>
+        <% } %>
+    <% } %>
+</main>
+<%- include('./fragments/footer.ejs') %>

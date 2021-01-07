@@ -1,7 +1,7 @@
 const BossRepository = require('../repository/sequelize/BossRepository');
 
 exports.getBosses = (req, res, next) => {
-    BossRepository.getBosses()
+    BossRepository.getData()
         .then(bosses => {
             res.status(200).json(bosses);
         })
@@ -12,7 +12,7 @@ exports.getBosses = (req, res, next) => {
 
 exports.getBossById = (req, res, next) => {
     const bossId = req.params.boss_id;
-    BossRepository.getBossById(bossId)
+    BossRepository.getDataById(bossId)
         .then(boss=> {
             if(!boss) {
                 res.status(404).json({
@@ -25,7 +25,7 @@ exports.getBossById = (req, res, next) => {
 };
 
 exports.createBoss = (req, res, next) => {
-    BossRepository.createBoss(req.body)
+    BossRepository.createData(req.body)
         .then(newObj => {
             res.status(201).json(newObj);
         })
@@ -39,7 +39,7 @@ exports.createBoss = (req, res, next) => {
 
 exports.updateBoss = (req, res, next) => {
     const bossId = req.params.boss_id;
-    BossRepository.updateBoss(bossId, req.body)
+    BossRepository.updateData(bossId, req.body)
         .then(result => {
             res.status(200).json({message: 'Boss updated!', boss: result});
         })
@@ -54,7 +54,7 @@ exports.updateBoss = (req, res, next) => {
 
 exports.deleteBoss = (req, res, next) => {
     const bossId = req.params.boss_id;
-    BossRepository.deleteBoss(bossId)
+    BossRepository.deleteData(bossId)
         .then(result => {
             res.status(200).json({message: 'Removed boss', boss: result});
         })

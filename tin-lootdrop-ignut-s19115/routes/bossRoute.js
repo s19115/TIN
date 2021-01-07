@@ -6,5 +6,9 @@ const bossController = require('../controllers/bossController');
 router.get('/', bossController.showBossList);
 router.get('/add', bossController.showBossForm);
 router.get('/details/:bossId', bossController.showBossDetails);
+router.get('/edit/:bossId', bossController.showBossEdit);
+router.get('/delete/:bossId',bossController.deleteBoss)
+router.post('/edit/:bossId', bossController.updateBoss);
+router.post('/add', bossController.createBoss);
 
 module.exports = router;

@@ -39,10 +39,21 @@ function checkEmail(value) {
 function checkIfNumber(value) {
     return !isNaN(value);
 }
+function checkIfInRange(lowerBound,upperBound,value){
+    if(value<lowerBound)return false;
+    if(value>upperBound)return false;
+    return true;
+}
 function checkIfNaturalInRange(lowerBound,upperBound, value){
     if(value<lowerBound) return false;
     if(value>upperBound) return false;
 
     // noinspection EqualityComparisonWithCoercionJS
     return Math.floor(value)==value;
+}
+function checkIfAfterStartingDate(startDate,endDate){
+    const dateFrom=new Date(startDate);
+    const dateTo=new Date(endDate);
+    return !(dateTo < dateFrom && dateTo != null);
+
 }

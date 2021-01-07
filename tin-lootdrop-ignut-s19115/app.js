@@ -7,19 +7,20 @@ var logger = require('morgan');
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
     .catch(err => {
-      console.log(err);
+        console.log(err);
     });
 
 const indexRouter = require('./routes/index');
 
-const bossApiRouter=require('./routes/api/bossApiRoute');
-const bossRouter=require('./routes/bossRoute');
+const bossApiRouter = require('./routes/api/bossApiRoute');
+const bossRouter = require('./routes/bossRoute');
 
-// const weaponApiRouter=require('./routes/api/weaponApiRoute');
-// const weaponRouter=require('./routes/weaponRoute');
-//
-// const dropApiRouter=require('./routes/api/dropApiRoute');
-// const dropRouter=require('./routes/dropRoute');
+const weaponApiRouter = require('./routes/api/weaponApiRoute');
+const weaponRouter = require('./routes/weaponRoute');
+
+
+const dropApiRouter = require('./routes/api/dropApiRoute');
+const dropRouter = require('./routes/dropRoute');
 
 
 var app = express();
@@ -32,30 +33,33 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/boss',bossRouter)
-app.use('/api/boss',bossApiRouter);
-
+app.use('/boss', bossRouter);
+app.use('/api/boss', bossApiRouter);
+app.use('/weapon', weaponRouter);
+app.use('/api/weapon', weaponApiRouter);
+app.use('/drop', dropRouter);
+app.use('/api/drop', dropApiRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-//
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+});
 
 module.exports = app;
