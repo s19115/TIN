@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
     .catch(err => {
@@ -23,6 +25,11 @@ const dropApiRouter = require('./routes/api/dropApiRoute');
 const dropRouter = require('./routes/dropRoute');
 
 
+
+const session = require('express-session');
+
+
+
 var app = express();
 
 
@@ -36,6 +43,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    secret: 'my_secret_password',
+    resave: false
+}));
+
+app.use((req, res, next) => {
+    res.locals.loggedUser = req.session.loggedUser;
+    if(!res.locals.loginError) {
+        res.locals.loginError = undefined;
+    }
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/boss', bossRouter);

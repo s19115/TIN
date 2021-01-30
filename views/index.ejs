@@ -1,8 +1,26 @@
-<%navLocation%>
+<%navLocation,loggedUser%>
 <%- include('./common/functions') %>
 <%- include('./fragments/header.ejs') %>
 <main>
     <h2>Main page</h2>
     <p>Lorem ipsum dolor sit amet...</p>
+    <% if(!loggedUser) { %>
+        <div id="login">
+            <h5>Logowanie</h5>
+            <form method="post" action="/login" novalidate>
+                <label for="loginEmail">Login:</label>
+                <input type="text" id="login" name="login">
+
+                <label for="loginPassword">Hasło:</label>
+                <input type="password" id="password" name="password">
+
+                <input type="submit" value="Zaloguj się">
+                <span id="loginErrors"><%= loginError ? loginError : ''%></span>
+            </form>
+        </div>
+    <% } else { %>
+    <span>Jesteś zalogowany jako: <%=loggedUser.firstName + " " + loggedUser.lastName%></span>
+    <a href="/logout">Wyloguj się</a>
+    <% } %>
 </main>
 <%- include('./fragments/footer.ejs') %>

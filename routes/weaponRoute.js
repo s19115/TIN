@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const weaponController = require('../controllers/weaponController');
+const weaponController = require('../controllers/DataControllers/weaponController');
 
 router.get('/', weaponController.showWeaponList);
 router.get('/add', weaponController.showWeaponForm);

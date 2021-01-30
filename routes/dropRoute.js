@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const dropController = require('../controllers/dropController');
+const dropController = require('../controllers/DataControllers/dropController');
 
 router.get('/', dropController.showDropList);
 router.get('/add', dropController.showDropForm);

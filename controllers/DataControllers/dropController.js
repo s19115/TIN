@@ -1,5 +1,5 @@
-const DropRepository =require('../repository/sequelize/DropRepository');
-const UniversalController=require('../controllers/universalController');
+const DropRepository =require('../../repository/sequelize/DropRepository');
+const UniversalController=require('./universalController');
 
 exports.showDropList = (req, res, next) => {
     UniversalController.showList(DropRepository,req,res,next);

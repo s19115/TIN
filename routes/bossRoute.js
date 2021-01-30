@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const bossController = require('../controllers/bossController');
+const bossController = require('../controllers/DataControllers/bossController');
 
 router.get('/', bossController.showBossList);
 router.get('/add', bossController.showBossForm);

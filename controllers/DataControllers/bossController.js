@@ -1,5 +1,5 @@
-const BossRepository = require('../repository/sequelize/BossRepository');
-const UniversalController=require('../controllers/universalController');
+const BossRepository = require('../../repository/sequelize/BossRepository');
+const UniversalController=require('./universalController');
 
 
 exports.showBossList = (req, res, next) => {

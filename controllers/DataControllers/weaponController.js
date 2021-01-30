@@ -1,5 +1,5 @@
-const WeaponRepository = require('../repository/sequelize/WeaponRepository');
-const UniversalController=require('../controllers/universalController')
+const WeaponRepository = require('../../repository/sequelize/WeaponRepository');
+const UniversalController=require('./universalController')
 
 
 exports.showWeaponList = (req, res, next) => {

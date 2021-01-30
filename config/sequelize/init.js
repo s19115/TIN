@@ -3,7 +3,10 @@ const sequelize = require('./sequelize');
 const Boss = require('../../model/sequelize/Boss');
 const Weapon = require('../../model/sequelize/Weapon');
 const Drop = require('../../model/sequelize/Drop');
+const User = require('../../model/sequelize/User');
 
+const authUtil = require('../../util/authUtils');
+const passHash = authUtil.hashPassword('1234');
 module.exports = () => {
     Weapon.hasMany(Drop, {
         as: 'Drops',
@@ -22,7 +25,7 @@ module.exports = () => {
     let allBosses, allWeapons;
     return sequelize
         //{force: true}
-        .sync({force: false})
+        .sync({force: true})
         .then(() => {
             return Boss.findAll();
         })
@@ -173,5 +176,11 @@ module.exports = () => {
             } else {
                 return drops;
             }
-        });
+        })
+        .then(()=>{
+            return User.bulkCreate([
+                {login: 'admin', password: passHash, privileges: true}
+            ])
+        })
+
 };
