@@ -1,0 +1,25 @@
+<%navLocation%>
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTarget -->
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validation<%=upperCase(navLocation)%>.js"></script>
+    <title>Loot Drop</title>
+</head>
+<body>
+<header>
+    <h1>Loot Drop</h1>
+    <img src="/images/logo.png" alt="Loot Drop Logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main page</a></li>
+        <li><a href="/boss" class="<%= navLocation == 'boss' ? 'active' : ''%>">Bosses</a></li>
+        <li><a href="/weapon" class="<%= navLocation == 'weapon' ? 'active' : ''%>">Weapons</a></li>
+        <li><a href="/drop" class="<%= navLocation == 'drop' ? 'active' : ''%>">Drops</a></li>
+    </ul>
+</nav>

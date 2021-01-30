@@ -1,0 +1,87 @@
+<% dataName, data, dataModel %>
+<%- include('./common/functions.ejs') %>
+<% var navLocation, url %>
+<% navLocation = url = lowerCase(dataName) %>
+
+
+
+<%- include('./fragments/header.ejs', {navLocation: navLocation}) %>
+<main>
+    <h2><%= data.name === undefined ? dataName : data.name %> details</h2>
+    <form class="form">
+        <% for (let dataFieldKey of Object.getOwnPropertyNames(dataModel)){ %>
+            <% if(dataModel[dataFieldKey].joinedOn){ %>
+                <label for="<%= upperCase(cutId(dataModel[dataFieldKey].name)) + "Name" %>"><%= upperCase(cutId(dataModel[dataFieldKey].name)) + " name" %>
+                    <% if(required(dataModel[dataFieldKey])){ %>
+                        <sup>*</sup>
+                    <% } %>
+                </label>
+                <input type="<%- type() %>" name="<% upperCase(dataFieldKey) %>" value="<%= data[upperCase(cutId(dataModel[dataFieldKey].name))]["dataValues"].name %>"
+                       id="<%= dataModel[dataFieldKey] %>" disabled>
+                <span id="error<%= dataFieldKey %>>" class="errors-text"></span>
+
+            <% } %>
+            <% if(!dataModel[dataFieldKey].hidden) { %>
+                <label for="<%= upperCase(dataModel[dataFieldKey]["name"]) %>"><%= upperCase(dataModel[dataFieldKey]["name"]) %>
+                    <% if(required(dataModel[dataFieldKey])){ %>
+                        <sup>*</sup>
+                    <% } %>
+                </label>
+                <input type="<%- type() %>" name="<% upperCase(dataFieldKey) %>" value="<%= getField(data["dataValues"][dataFieldKey]) %>"
+                       id="<%= dataModel[dataFieldKey] %>" disabled>
+                <span id="error<%= dataFieldKey %>>" class="errors-text"></span>
+            <% } %>
+        <% } %>
+        <div class="form-buttons">
+            <a href="/<%= url %>/edit/<%= data._id %>" class="list-actions-button-edit">Edit</a>
+        </div>
+    </form>
+
+    <% for(let association of dataModel.associations) { %>
+        <% if(!checkIfAssociationIsJoinedOn(association, dataModel)) { %>
+            <h2><%= association %></h2>
+            <% if (data[association]["length"] > 0){ %>
+                <table class="table-list">
+                    <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[association][0]["dataValues"]))) %>
+                    <thead>
+                    <tr>
+                        <% for (let columnName of names) { %>
+                            <th><%= columnName %></th>
+                        <% } %>
+                    </tr>
+                    </thead>
+                    <% for(let abcd in data[association]) { %>
+                        <tr>
+                            <% for(let field of names) { %>
+
+                                <td><%= getField(data[association][abcd]["dataValues"][field]) %></td>
+
+                            <% } %>
+                        </tr>
+                    <% } %>
+                </table>
+            <% } else if (typeof data[association]["dataValues"] !== 'undefined'){ %>
+                <table class="table-list">
+                    <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[association]["dataValues"]))) %>
+                    <thead>
+                    <tr>
+                        <% for (let columnName of names) { %>
+                            <th><%= columnName %></th>
+                        <% } %>
+                    </tr>
+                    </thead>
+
+                    <tr>
+                        <% for(let field of names) { %>
+
+                            <td><%= getField(data[association]["dataValues"][field]) %></td>
+
+                        <% } %>
+                    </tr>
+
+                </table>
+            <% } %>
+        <% } %>
+    <% } %>
+</main>
+<%- include('./fragments/footer.ejs') %>
