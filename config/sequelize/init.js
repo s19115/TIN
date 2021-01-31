@@ -1,4 +1,4 @@
-const sequelize = require('./sequelize');
+    const sequelize = require('./sequelize');
 
 const Boss = require('../../model/sequelize/Boss');
 const Weapon = require('../../model/sequelize/Weapon');

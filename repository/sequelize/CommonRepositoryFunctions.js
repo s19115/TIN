@@ -46,6 +46,7 @@ exports.getDataModel = async (Repository, fieldsToHide, fieldsToJoinOn, fieldToS
             output.associations[assoc] = namesArray;
         }
     }
+    if(output.associations.length===0) delete output["associations"];
     return output;
 
 }

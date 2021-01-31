@@ -24,6 +24,8 @@ const weaponRouter = require('./routes/weaponRoute');
 const dropApiRouter = require('./routes/api/dropApiRoute');
 const dropRouter = require('./routes/dropRoute');
 
+const userRouter=require('./routes/userRoute');
+
 
 
 const session = require('express-session');
@@ -64,6 +66,7 @@ app.use('/weapon', weaponRouter);
 app.use('/api/weapon', weaponApiRouter);
 app.use('/drop', dropRouter);
 app.use('/api/drop', dropApiRouter);
+app.use('/user',userRouter);
 
 
 // catch 404 and forward to error handler

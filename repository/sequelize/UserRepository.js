@@ -2,7 +2,7 @@ const Commons = require("../../repository/sequelize/CommonRepositoryFunctions");
 const User = require("../../model/sequelize/User");
 
 
-const fieldsToHide = [];
+const fieldsToHide = ["password"];
 
 exports.getDataModel = () => {
     return Commons.getDataModel(User, fieldsToHide)
