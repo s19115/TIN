@@ -4,7 +4,7 @@ const Boss = require('../../model/sequelize/Boss');
 const Weapon = require('../../model/sequelize/Weapon');
 const repoMap={Boss: Boss, Drops: Drop, Weapon: Weapon};
 
-exports.getDataModel = async (Repository, fieldsToHide, fieldsToJoinOn, fieldToShowOnJoin) => {
+exports.getDataModel = async (Repository, fieldsToHide, fieldsToJoinOn, fieldToShowOnJoin, fieldsToHideValue,fieldsToGrant) => {
     let output = {};
     let dataField = Repository.rawAttributes;
     for (let field of Object.keys(dataField)) {
@@ -19,6 +19,10 @@ exports.getDataModel = async (Repository, fieldsToHide, fieldsToJoinOn, fieldToS
                     output[field]["hidden"] = fieldsToHide.includes(field);
                 if (typeof fieldsToJoinOn !== 'undefined')
                     output[field]["joinedOn"] = fieldsToJoinOn.includes(field);
+                if (typeof fieldsToHideValue !== 'undefined')
+                    output[field]["hiddenValue"] = fieldsToHideValue.includes(field);
+                if (typeof fieldsToGrant !== 'undefined')
+                    output[field]["grantedValue"] = fieldsToGrant.includes(field);
 
             }
         }

@@ -1,4 +1,4 @@
-<%navLocation%>
+<% navLocation;loggedUser %>
 <!DOCTYPE html>
 <!--suppress HtmlUnknownTarget -->
 <html lang="pl-PL">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css"/>
     <script type="application/javascript" src="/js/validationCommon.js"></script>
-    <script type="application/javascript" src="/js/validation<%=upperCase(navLocation)%>.js"></script>
+    <script type="application/javascript" src="/js/validation<%= upperCase(navLocation) %>.js"></script>
     <title>Loot Drop</title>
 </head>
 <body>
@@ -17,9 +17,14 @@
 </header>
 <nav>
     <ul>
-        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main page</a></li>
-        <li><a href="/boss" class="<%= navLocation == 'boss' ? 'active' : ''%>">Bosses</a></li>
-        <li><a href="/weapon" class="<%= navLocation == 'weapon' ? 'active' : ''%>">Weapons</a></li>
-        <li><a href="/drop" class="<%= navLocation == 'drop' ? 'active' : ''%>">Drops</a></li>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>">Main page</a></li>
+        <li><a href="/boss" class="<%= navLocation == 'boss' ? 'active' : '' %>">Bosses</a></li>
+        <li><a href="/weapon" class="<%= navLocation == 'weapon' ? 'active' : '' %>">Weapons</a></li>
+        <li><a href="/drop" class="<%= navLocation == 'drop' ? 'active' : '' %>">Drops</a></li>
+        <% if(loggedUser !== undefined && loggedUser.privileges) { %>
+            <li><a href="/user" class="<%= navLocation == 'user' ? 'active' : '' %>">Users</a></li>
+        <% } else if(loggedUser !== undefined){ %>
+            <li><a href="/user/details/<%=loggedUser._id%>" class="<%= navLocation == 'user' ? 'active' : '' %>">Account</a></li>
+        <% } %>
     </ul>
 </nav>

@@ -1,4 +1,4 @@
-<% dataName, dataModel, validationErrors, previousData %>
+<% dataName; dataModel; validationErrors; previousData %>
 <%- include('./common/functions.ejs') %>
 <% var navLocation, url %>
 <% navLocation = url = lowerCase(dataName) %>
@@ -38,7 +38,7 @@
                 </span>
 
             <% } %>
-            <% if(!dataModel[column].hidden) { %>
+            <% if(!dataModel[column].hidden&&!dataModel[column].grantedValue) { %>
                 <label for="<%= upperCase(dataModel[column]["name"]) %>"><%= upperCase(dataModel[column]["name"]) + ":" %>
                     <% if(required(dataModel[column])){ %>
                         <sup>*</sup>

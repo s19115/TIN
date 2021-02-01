@@ -16,18 +16,20 @@
                         <sup>*</sup>
                     <% } %>
                 </label>
-                <input type="<%- type() %>" name="<% upperCase(dataFieldKey) %>" value="<%= data[upperCase(cutId(dataModel[dataFieldKey].name))]["dataValues"].name %>"
+                <input type="<%- type() %>" name="<% upperCase(dataFieldKey) %>"
+                       value="<%= data[upperCase(cutId(dataModel[dataFieldKey].name))]["dataValues"].name %>"
                        id="<%= dataModel[dataFieldKey] %>" disabled>
                 <span id="error<%= dataFieldKey %>>" class="errors-text"></span>
 
             <% } %>
-            <% if(!dataModel[dataFieldKey].hidden) { %>
+            <% if(!dataModel[dataFieldKey].hidden&&!dataModel[dataFieldKey].hiddenValue) { %>
                 <label for="<%= upperCase(dataModel[dataFieldKey]["name"]) %>"><%= upperCase(dataModel[dataFieldKey]["name"]) %>
                     <% if(required(dataModel[dataFieldKey])){ %>
                         <sup>*</sup>
                     <% } %>
                 </label>
-                <input type="<%- type() %>" name="<% upperCase(dataFieldKey) %>" value="<%= getField(data["dataValues"][dataFieldKey]) %>"
+                <input type="<%- type() %>" name="<% upperCase(dataFieldKey) %>"
+                       value="<%= getField(data["dataValues"][dataFieldKey]) %>"
                        id="<%= dataModel[dataFieldKey] %>" disabled>
                 <span id="error<%= dataFieldKey %>>" class="errors-text"></span>
             <% } %>
@@ -37,49 +39,51 @@
         </div>
     </form>
 
-    <% for(let association of dataModel.associations) { %>
-        <% if(!checkIfAssociationIsJoinedOn(association, dataModel)) { %>
-            <h2><%= association %></h2>
-            <% if (data[association]["length"] > 0){ %>
-                <table class="table-list">
-                    <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[association][0]["dataValues"]))) %>
-                    <thead>
-                    <tr>
-                        <% for (let columnName of names) { %>
-                            <th><%= columnName %></th>
+    <% if(dataModel.associations !== undefined) { %>
+        <% for(let association of dataModel.associations) { %>
+            <% if(!checkIfAssociationIsJoinedOn(association, dataModel)) { %>
+                <h2><%= association %></h2>
+                <% if (data[association]["length"] > 0){ %>
+                    <table class="table-list">
+                        <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[association][0]["dataValues"]))) %>
+                        <thead>
+                        <tr>
+                            <% for (let columnName of names) { %>
+                                <th><%= columnName %></th>
+                            <% } %>
+                        </tr>
+                        </thead>
+                        <% for(let abcd in data[association]) { %>
+                            <tr>
+                                <% for(let field of names) { %>
+
+                                    <td><%= getField(data[association][abcd]["dataValues"][field]) %></td>
+
+                                <% } %>
+                            </tr>
                         <% } %>
-                    </tr>
-                    </thead>
-                    <% for(let abcd in data[association]) { %>
+                    </table>
+                <% } else if (typeof data[association]["dataValues"] !== 'undefined'){ %>
+                    <table class="table-list">
+                        <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[association]["dataValues"]))) %>
+                        <thead>
+                        <tr>
+                            <% for (let columnName of names) { %>
+                                <th><%= columnName %></th>
+                            <% } %>
+                        </tr>
+                        </thead>
+
                         <tr>
                             <% for(let field of names) { %>
 
-                                <td><%= getField(data[association][abcd]["dataValues"][field]) %></td>
+                                <td><%= getField(data[association]["dataValues"][field]) %></td>
 
                             <% } %>
                         </tr>
-                    <% } %>
-                </table>
-            <% } else if (typeof data[association]["dataValues"] !== 'undefined'){ %>
-                <table class="table-list">
-                    <% let names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[association]["dataValues"]))) %>
-                    <thead>
-                    <tr>
-                        <% for (let columnName of names) { %>
-                            <th><%= columnName %></th>
-                        <% } %>
-                    </tr>
-                    </thead>
 
-                    <tr>
-                        <% for(let field of names) { %>
-
-                            <td><%= getField(data[association]["dataValues"][field]) %></td>
-
-                        <% } %>
-                    </tr>
-
-                </table>
+                    </table>
+                <% } %>
             <% } %>
         <% } %>
     <% } %>

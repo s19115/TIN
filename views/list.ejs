@@ -15,7 +15,7 @@
                 <% if(dataModel[dataFieldKey].joinedOn) { %>
                     <th><%= upperCase(cutId(dataModel[dataFieldKey].name)) %></th>
                 <% } %>
-                <% if(!dataModel[dataFieldKey].hidden) { %>
+                <% if(!dataModel[dataFieldKey].hidden&&!dataModel[dataFieldKey].hiddenValue) { %>
                     <th><%= upperCase(dataModel[dataFieldKey].name) %></th>
                 <% } %>
             <% } %>
@@ -30,7 +30,7 @@
                     <% if (dataModel[dataFieldKey].joinedOn){ %>
                         <td><%= data[entry][upperCase(cutId(dataModel[dataFieldKey].name))]["dataValues"].name %></td>
                     <% } %>
-                    <% if(!dataModel[dataFieldKey].hidden) { %>
+                    <% if(!dataModel[dataFieldKey].hidden&&!dataModel[dataFieldKey].hiddenValue) { %>
                         <td><%= getField(entrysData[dataFieldKey]) %></td>
                     <% } %>
                 <% } %>

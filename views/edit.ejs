@@ -1,4 +1,4 @@
-<% dataName, data, dataModel, validationErrors %>
+<% dataName; data; dataModel; validationErrors; loggedUser %>
 <%- include('./common/functions.ejs') %>
 <% var navLocation, url %>
 <% navLocation = url = lowerCase(dataName) %>
@@ -27,7 +27,7 @@
                 </select>
                 <span id="error<%= column %>" class="errors-text"></span>
             <% } %>
-            <% if(!dataModel[column].hidden) { %>
+            <% if(!dataModel[column].hidden&&(!dataModel[column].grantedValue||loggedUser.privileges)) { %>
                 <label for="<%= upperCase(dataModel[column]["name"]) %>"><%= upperCase(dataModel[column]["name"]) + ":" %>
                     <% if(required(dataModel[column])){ %>
                         <sup>*</sup>
@@ -35,7 +35,9 @@
                 </label>
                 <input type="<%- type(dataModel[column].type.toString()) %>"
                        name="<%= dataModel[column].name %>"
+                <% if(!dataModel[column].hiddenValue){ %>
                        value="<%= getField(data["dataValues"][column]) %>"
+                        <% } %>
                        id="<%= upperCase(dataModel[column].name) %>"
                        class="<%= validationErrors.find(e => e.path.includes(column)) ? 'error-input' : '' %>">
                 <span id="error<%= upperCase(column) %>" class="errors-text">
@@ -56,29 +58,31 @@
         </div>
     </form>
 
-    <% for(let assoc of dataModel.associations) { %>
-        <% if(!checkIfAssociationIsJoinedOn(assoc, dataModel)) { %>
-            <h2><%= assoc %></h2>
-            <% if (data[assoc]["length"] > 0){ %>
-                <table class="table-list">
-                    <% var names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[assoc][0]["dataValues"]))) %>
-                    <thead>
-                    <tr>
-                        <% for (let columnName of names) { %>
-                            <th><%= columnName %></th>
-                        <% } %>
-                    </tr>
-                    </thead>
-                    <% for(let abcd in data[assoc]) { %>
+    <% if(dataModel.associations !== undefined){ %>
+        <% for(let assoc of dataModel.associations) { %>
+            <% if(!checkIfAssociationIsJoinedOn(assoc, dataModel)) { %>
+                <h2><%= assoc %></h2>
+                <% if (data[assoc]["length"] > 0){ %>
+                    <table class="table-list">
+                        <% var names = moveLastToFirst(filterOut(Object.getOwnPropertyNames(data[assoc][0]["dataValues"]))) %>
+                        <thead>
                         <tr>
-                            <% for(let field of names) { %>
-
-                                <td><%= getField(data[assoc][abcd]["dataValues"][field]) %></td>
-
+                            <% for (let columnName of names) { %>
+                                <th><%= columnName %></th>
                             <% } %>
                         </tr>
-                    <% } %>
-                </table>
+                        </thead>
+                        <% for(let abcd in data[assoc]) { %>
+                            <tr>
+                                <% for(let field of names) { %>
+
+                                    <td><%= getField(data[assoc][abcd]["dataValues"][field]) %></td>
+
+                                <% } %>
+                            </tr>
+                        <% } %>
+                    </table>
+                <% } %>
             <% } %>
         <% } %>
     <% } %>

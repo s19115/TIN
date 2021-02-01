@@ -47,7 +47,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: 'my_secret_password',
+    secret: 'super-secret-password',
     resave: false
 }));
 
@@ -67,6 +67,7 @@ app.use('/api/weapon', weaponApiRouter);
 app.use('/drop', dropRouter);
 app.use('/api/drop', dropApiRouter);
 app.use('/user',userRouter);
+
 
 
 // catch 404 and forward to error handler
