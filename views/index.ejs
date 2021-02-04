@@ -14,14 +14,16 @@
                 <label for="loginPassword">Hasło:</label>
                 <input type="password" id="password" name="password">
 
-                <input type="submit" value="Zaloguj się">
+                <input type="submit" value="Zaloguj się" class="button-login">
                 <span id="loginErrors"><%= loginError ? loginError : ''%></span>
             </form>
         </div>
-        <a href="/user/add">Zarejestruj się</a>
+        <br>
+        <a href="/user/add" class="button-add">Zarejestruj się</a>
     <% } else { %>
-    <span>Jesteś zalogowany jako: <%=loggedUser.firstName + " " + loggedUser.lastName%></span>
-    <a href="/logout">Wyloguj się</a>
+    <span>Jesteś zalogowany jako: <%=loggedUser.login%></span>
+    <br>
+    <a href="/logout" class="button-logout">Wyloguj się</a>
     <% } %>
 </main>
 <%- include('./fragments/footer.ejs') %>

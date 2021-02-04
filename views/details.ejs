@@ -1,4 +1,4 @@
-<% dataName; data; dataModel %>
+<% dataName; data; dataModel;loggedUser %>
 <%- include('./common/functions.ejs') %>
 <% var navLocation, url %>
 <% navLocation = url = lowerCase(dataName) %>
@@ -22,7 +22,7 @@
                 <span id="error<%= dataFieldKey %>>" class="errors-text"></span>
 
             <% } %>
-            <% if(!dataModel[dataFieldKey].hidden&&!dataModel[dataFieldKey].hiddenValue) { %>
+            <% if(!dataModel[dataFieldKey].hidden && !dataModel[dataFieldKey].hiddenValue) { %>
                 <label for="<%= upperCase(dataModel[dataFieldKey]["name"]) %>"><%= upperCase(dataModel[dataFieldKey]["name"]) %>
                     <% if(required(dataModel[dataFieldKey])){ %>
                         <sup>*</sup>
@@ -34,9 +34,11 @@
                 <span id="error<%= dataFieldKey %>>" class="errors-text"></span>
             <% } %>
         <% } %>
-        <div class="form-buttons">
-            <a href="/<%= url %>/edit/<%= data._id %>" class="list-actions-button-edit">Edit</a>
-        </div>
+        <% if(loggedUser){ %>
+            <div class="form-buttons">
+                <a href="/<%= url %>/edit/<%= data._id %>" class="list-actions-button-edit">Edit</a>
+            </div>
+        <% } %>
     </form>
 
     <% if(dataModel.associations !== undefined) { %>

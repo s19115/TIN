@@ -38,18 +38,23 @@
                 </span>
 
             <% } %>
-            <% if(!dataModel[column].hidden&&!dataModel[column].grantedValue) { %>
+            <% if(!dataModel[column].hidden && !dataModel[column].grantedValue) { %>
                 <label for="<%= upperCase(dataModel[column]["name"]) %>"><%= upperCase(dataModel[column]["name"]) + ":" %>
                     <% if(required(dataModel[column])){ %>
                         <sup>*</sup>
                     <% } %>
                 </label>
-                <input type="<%- type(dataModel[column].type.toString()) %>"
-                       name="<%= dataModel[column].name %>"
-                       value="<%= getField(previousData[column]) %>"
-                       id="<%= upperCase(dataModel[column].name) %>"
-                       placeholder="<%= getPlaceHolder(dataModel[column].type) %>"
-                       class="<%= validationErrors.find(e => e.path.includes(column)) ? 'error-input' : '' %>">
+                <input
+                <% if(dataModel[column].hiddenValue) { %>
+                    type="password"
+                <% }else { %>
+                    type="<%- type(dataModel[column].type.toString()) %>"
+                        <% } %>
+                    name="<%= dataModel[column].name %>"
+                    value="<%= getField(previousData[column]) %>"
+                    id="<%= upperCase(dataModel[column].name) %>"
+                    placeholder="<%= getPlaceHolder(dataModel[column].type) %>"
+                    class="<%= validationErrors.find(e => e.path.includes(column)) ? 'error-input' : '' %>">
                 <span id="error<%= upperCase(column) %>" class="errors-text">
                     <% if (validationErrors.find(e => e.path.includes(column))) { %>
                         <%= validationErrors.find(e => e.path.includes(column)).message %>

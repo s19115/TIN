@@ -1,4 +1,4 @@
-<% dataName; data; dataModel %>
+<% dataName; data; dataModel; loggedUser %>
 <%- include('./common/functions.ejs') %>
 <% var navLocation, url %>
 <% navLocation = url = lowerCase(dataName) %>
@@ -15,7 +15,7 @@
                 <% if(dataModel[dataFieldKey].joinedOn) { %>
                     <th><%= upperCase(cutId(dataModel[dataFieldKey].name)) %></th>
                 <% } %>
-                <% if(!dataModel[dataFieldKey].hidden&&!dataModel[dataFieldKey].hiddenValue) { %>
+                <% if(!dataModel[dataFieldKey].hidden && !dataModel[dataFieldKey].hiddenValue) { %>
                     <th><%= upperCase(dataModel[dataFieldKey].name) %></th>
                 <% } %>
             <% } %>
@@ -30,7 +30,7 @@
                     <% if (dataModel[dataFieldKey].joinedOn){ %>
                         <td><%= data[entry][upperCase(cutId(dataModel[dataFieldKey].name))]["dataValues"].name %></td>
                     <% } %>
-                    <% if(!dataModel[dataFieldKey].hidden&&!dataModel[dataFieldKey].hiddenValue) { %>
+                    <% if(!dataModel[dataFieldKey].hidden && !dataModel[dataFieldKey].hiddenValue) { %>
                         <td><%= getField(entrysData[dataFieldKey]) %></td>
                     <% } %>
                 <% } %>
@@ -41,7 +41,9 @@
         <% } %>
         </tbody>
     </table>
-    <p><a href="/<%= url %>/add" class="button-add">Add new <%= dataName %></a></p>
+    <% if(loggedUser){ %>
+        <p><a href="/<%= url %>/add" class="button-add">Add new <%= dataName %></a></p>
+    <% } %>
 </main>
 
 <%- include('./fragments/footer.ejs') %>

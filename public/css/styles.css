@@ -295,6 +295,29 @@ abbr[title='required'] {
     background-color: #096c33;
 }
 
+.button-login{
+    background-color: #00a2d3;
+    border-radius: 5rem;
+}
+.button-login:hover{
+    background-color: #23abb3;
+}
+
+.button-login{
+    background-color: #00a2d3;
+    border-radius: 5rem;
+}
+.button-login:hover{
+    background-color: #23abb3;
+}
+.button-logout{
+    background-color: #d34300;
+    border-radius: 5rem;
+}
+.button-logout:hover{
+    background-color: #c62923;
+}
+
 .form-button-cancel,
 .list-actions-button-delete {
     background-color: #581c15;
