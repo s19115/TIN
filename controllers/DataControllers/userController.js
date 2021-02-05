@@ -43,6 +43,6 @@ exports.createUser = (req, res, next) => {
     UserRepository.createData(req.body).then(result => {
         res.redirect('/');
     }).catch(err => {
-        this.showForm(UserRepository, req, res, next, err.errors);
+       UniversalController.showForm(UserRepository, req, res, next, err.errors);
     })
 }

@@ -11,7 +11,6 @@ const User = sequelize.define('User', {
     login: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
         validate: {
             notEmpty: {
                 msg: "Pole jest wymagane"
@@ -20,13 +19,18 @@ const User = sequelize.define('User', {
                 args: [2, 60],
                 msg: "Pole powinno zawierać od 2 do 60 znaków"
             },
+
+        },
+        unique: {
+            args: true,
+            msg: 'Login juz jest zajety'
         }
     },
-    password:{
+    password: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    privileges:{
+    privileges: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false
